@@ -16,7 +16,7 @@ jobs:
 
   livraison:
     runs-on: ubuntu-22.04
-    if: startsWith(github.ref, 'refs/tags/')
+    if: contains('refs/heads/main', github.ref)
     steps:
       - uses: actions/checkout@v4
       - name: "Login to Docker Hub"
@@ -30,4 +30,6 @@ jobs:
         with:
           push: true
           context: ./
-          tags: "kylian14/sayhello:${{ github.ref_name }}"  
+          tags: "kylian14/sayhello:unstable"  
+      # - name: "Deploy on `DockerHub`"
+      #   uses: git push origin unstable
